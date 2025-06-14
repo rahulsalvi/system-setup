@@ -12,3 +12,15 @@
       - com.brave.Browser
       - org.localsend.localsend_app
     state: present
+
+- name: Ensure brave config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.user_dir }}/.var/app/com.brave.Browser/config"
+    state: directory
+    mode: u=rwx,g=rx,o=rx
+
+- name: Set up brave-flags.conf
+  ansible.builtin.copy:
+    src: brave-flags.conf
+    dest: "{{ ansible_facts.user_dir }}/.var/app/com.brave.Browser/config/brave-flags.conf"
+    mode: u=rw,g=r,o=r
