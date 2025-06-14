@@ -1,0 +1,13 @@
+---
+- name: Install Flatpak
+  community.general.pacman:
+    name: flatpak
+    state: present
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Install Flatpak apps
+  community.general.flatpak:
+    name:
+      - com.brave.Browser
+      - org.localsend.localsend_app
+    state: present
