@@ -16,3 +16,9 @@ desktops
 ```bash
 ansible-pull -K -U https://github.com/rahulsalvi/system-setup.git
 ```
+
+## Local Testing
+
+```bash
+ansible-playbook local.yml -c local -K
+```
