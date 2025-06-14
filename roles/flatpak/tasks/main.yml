@@ -9,7 +9,13 @@
 - name: Install Flatpak apps
   community.general.flatpak:
     name:
+      - com.bitwarden.desktop
       - com.brave.Browser
+      - com.discordapp.Discord
+      - com.github.txhx84.Flatseal
+      - com.prusa3d.PrusaSlicer
+      - org.freecad.FreeCAD
+      - org.inkscape.Inkscape
       - org.localsend.localsend_app
     state: present
 
