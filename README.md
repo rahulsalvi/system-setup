@@ -14,5 +14,5 @@ desktops
 2. run this playbook with `ansible-pull`
 
 ```bash
-sudo ansible-pull -U https://github.com/rahulsalvi/system-setup.git
+ansible-pull -K -U https://github.com/rahulsalvi/system-setup.git
 ```

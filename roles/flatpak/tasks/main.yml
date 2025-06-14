@@ -3,6 +3,7 @@
   community.general.pacman:
     name: flatpak
     state: present
+  become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
 - name: Install Flatpak apps
