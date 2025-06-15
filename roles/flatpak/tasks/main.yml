@@ -12,7 +12,7 @@
       - com.bitwarden.desktop
       - com.brave.Browser
       - com.discordapp.Discord
-      - com.github.txhx84.Flatseal
+      - com.github.tchx84.Flatseal
       - com.prusa3d.PrusaSlicer
       - org.freecad.FreeCAD
       - org.inkscape.Inkscape
