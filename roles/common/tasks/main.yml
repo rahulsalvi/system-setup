@@ -11,11 +11,14 @@
       - iperf3
       - less
       - neovim
+      - python
+      - python-pip
       - python-pynvim
       - rsync
       - step-cli
       - tailscale
       - ufw
+      - unzip
       - wget
       - zsh
     state: present
