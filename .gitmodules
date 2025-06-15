@@ -1,3 +1,3 @@
-[submodule "roles/common/files/pki"]
-	path = roles/common/files/pki
+[submodule "files/pki"]
+	path = files/pki
 	url = ../pki.git
