@@ -1,0 +1,14 @@
+---
+- name: Install neovim packages
+  community.general.pacman:
+    name:
+      - neovim
+      - python-pynvim
+      - lua51
+      - luarocks
+      - nodejs
+      - npm
+      - tree-sitter-cli
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"

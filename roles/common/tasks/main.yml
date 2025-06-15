@@ -8,12 +8,11 @@
       - docker-buildx
       - docker-compose
       - git
+      - go
       - iperf3
       - less
-      - neovim
       - python
       - python-pip
-      - python-pynvim
       - rsync
       - step-cli
       - tailscale
