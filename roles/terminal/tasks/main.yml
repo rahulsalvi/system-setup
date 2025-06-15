@@ -1,0 +1,9 @@
+---
+- name: Install terminal packages
+  community.general.pacman:
+    name:
+      - fzf
+      - zsh-completions
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
