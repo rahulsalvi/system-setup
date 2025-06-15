@@ -2,9 +2,28 @@
 - name: Install terminal packages
   community.general.pacman:
     name:
+      - bat
+      - bat-extras
+      - btop
       - chezmoi
+      - direnv
+      - duf
+      - erdtree
+      - eza
+      - fd
       - fzf
+      - git-delta
+      - git-zsh-completion
+      - github-cli
+      - htop
+      - lazygit
+      - starship
+      - yazi
+      - zoxide
+      - zsh-autosuggestions
       - zsh-completions
+      - zsh-history-substring-search
+      - zsh-syntax-highlighting
     state: present
   become: true
   when: ansible_facts['distribution'] == "Archlinux"

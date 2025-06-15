@@ -3,14 +3,19 @@
   community.general.pacman:
     name:
       - ansible
+      - curl
       - docker
       - docker-buildx
       - docker-compose
       - git
+      - iperf3
+      - less
       - neovim
+      - python-pynvim
       - step-cli
       - tailscale
       - ufw
+      - wget
       - zsh
     state: present
   become: true
@@ -20,4 +25,11 @@
   ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     shell: /usr/bin/zsh
+  become: true
+
+- name: Enable tailscaled
+  ansible.builtin.systemd_service:
+    name: tailscaled
+    enabled: true
+    state: started
   become: true
