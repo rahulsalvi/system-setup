@@ -12,6 +12,7 @@
       - less
       - neovim
       - python-pynvim
+      - rsync
       - step-cli
       - tailscale
       - ufw
@@ -33,3 +34,18 @@
     enabled: true
     state: started
   become: true
+
+- name: Add root certs to system trust store
+  ansible.posix.synchronize:
+    src: pki/tls/
+    dest: /etc/ca-certificates/trust-source/anchors/
+    owner: false
+    group: false
+    delete: true
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Update CA certs
+  ansible.builtin.command: /usr/bin/update-ca-trust
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
