@@ -25,3 +25,11 @@
     name: systemd-rfkill.socket
     masked: true
   become: true
+
+- name: Set SDDM HiDPI config
+  ansible.builtin.copy:
+    src: sddm_hidpi.conf
+    dest: /etc/sddm.conf.d/hidpi.conf
+    mode: u=rw,g=r,o=r
+  become: true
+  when: ansible_facts['env']['XDG_CURRENT_DESKTOP'] == "KDE"
