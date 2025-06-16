@@ -69,6 +69,24 @@
   when: ansible_facts['distribution'] == "Archlinux"
   changed_when: true
 
+- name: Ensure /etc/ansible directory exists
+  ansible.builtin.file:
+    path: /etc/ansible
+    state: directory
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  become: true
+
+- name: Set default ansible.cfg file
+  ansible.builtin.copy:
+    src: ansible.cfg
+    dest: /etc/ansible/ansible.cfg
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+
 - name: Deny incoming traffic
   community.general.ufw:
     direction: incoming
