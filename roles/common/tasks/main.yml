@@ -68,3 +68,20 @@
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
   changed_when: true
+
+- name: Deny incoming traffic
+  community.general.ufw:
+    direction: incoming
+    policy: deny
+  become: true
+
+- name: Allow outgoing traffic
+  community.general.ufw:
+    direction: outgoing
+    policy: allow
+  become: true
+
+- name: Enable UFW
+  community.general.ufw:
+    state: enabled
+  become: true
