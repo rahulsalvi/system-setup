@@ -1,0 +1,39 @@
+---
+- name: Install ssh packages
+  community.general.pacman:
+    name:
+      - openssh
+      - ufw
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Create ssh group
+  ansible.builtin.group:
+    name: ssh
+    state: present
+  become: true
+
+- name: Create trusted user CA keys file
+  ansible.builtin.assemble:
+    src: files/pki/ssh/user_ca
+    dest: /etc/ssh/trusted_user_ca_keys
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+
+- name: Create global known_hosts file
+  ansible.builtin.template:
+    src: templates/known_hosts.j2
+    dest: /etc/ssh/ssh_known_hosts
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+
+- name: Limit ssh
+  community.general.ufw:
+    rule: limit
+    name: SSH
+  become: true
