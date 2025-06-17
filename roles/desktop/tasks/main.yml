@@ -38,6 +38,13 @@
     state: started
   become: true
 
+- name: Enable bluetooth service
+  ansible.builtin.systemd_service:
+    name: bluetooth
+    enabled: true
+    state: started
+  become: true
+
 - name: Ensure environment.d config directory exists
   ansible.builtin.file:
     path: "{{ ansible_facts.user_dir }}/.config/environment.d"
