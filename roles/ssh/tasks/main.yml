@@ -55,8 +55,9 @@
   notify: "Restart sshd"
 
 - name: Remove small Diffie-Hellman moduli
-  ansible.builtin.shell: awk -i inplace '$5 >= 3071' /etc/ssh/moduli
-  changed_when: true
+  ansible.builtin.shell:
+    cmd: awk -i inplace '$5 >= 3071' /etc/ssh/moduli && touch /etc/ssh/moduli-are-safe
+    creates: /etc/ssh/moduli-are-safe
   become: true
 
 - name: Remove default ssh config on Arch Linux
