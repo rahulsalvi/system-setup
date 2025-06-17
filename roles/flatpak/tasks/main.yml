@@ -30,3 +30,10 @@
     src: brave-flags.conf
     dest: "{{ ansible_facts.user_dir }}/.var/app/com.brave.Browser/config/brave-flags.conf"
     mode: u=rw,g=r,o=r
+
+- name: Allow localsend through firewall
+  community.general.ufw:
+    rule: allow
+    direction: in
+    port: 53317
+  become: true
