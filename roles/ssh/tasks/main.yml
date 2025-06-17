@@ -44,3 +44,27 @@
     rule: limit
     name: SSH
   become: true
+
+- name: Restart sshd
+  ansible.builtin.systemd_service:
+    name: sshd
+    state: restarted
+    enabled: true
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Mask sshdgenkeys service
+  ansible.builtin.systemd_service:
+    name: sshdgenkeys
+    masked: true
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Remove ECDSA key
+  ansible.builtin.file:
+    path: /etc/ssh/{{ item }}
+    state: absent
+  loop:
+    - ssh_host_ecdsa_key
+    - ssh_host_ecdsa_key.pub
+  become: true
