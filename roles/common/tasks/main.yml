@@ -15,6 +15,7 @@
       - python-pip
       - rsync
       - step-cli
+      - syncthing
       - tailscale
       - ufw
       - unzip
@@ -49,6 +50,13 @@
 - name: Enable tailscaled
   ansible.builtin.systemd_service:
     name: tailscaled
+    enabled: true
+    state: started
+  become: true
+
+- name: Enable syncthing for running user
+  ansible.builtin.systemd_service:
+    name: "syncthing@{{ ansible_user_id }}"
     enabled: true
     state: started
   become: true
