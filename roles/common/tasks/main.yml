@@ -60,6 +60,7 @@
     owner: false
     group: false
     delete: true
+    times: false
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 

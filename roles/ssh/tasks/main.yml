@@ -47,6 +47,7 @@
     dest: /etc/ssh/
     owner: false
     group: false
+    times: false
   become: true
 
 - name: Remove small Diffie-Hellman moduli
