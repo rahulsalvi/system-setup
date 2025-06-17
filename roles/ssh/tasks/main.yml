@@ -14,6 +14,13 @@
     state: present
   become: true
 
+- name: Add running user to ssh group
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    groups: ssh
+    append: true
+  become: true
+
 - name: Create trusted user CA keys file
   ansible.builtin.assemble:
     src: files/pki/ssh/user_ca
