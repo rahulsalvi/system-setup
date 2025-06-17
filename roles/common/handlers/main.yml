@@ -1,0 +1,7 @@
+---
+- name: Update CA certificates (Arch Linux)
+  ansible.builtin.command: /usr/bin/update-ca-trust
+  become: true
+  listen: "Update CA certificates"
+  when: ansible_facts['distribution'] == "Archlinux"
+  changed_when: true
