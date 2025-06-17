@@ -56,3 +56,12 @@
     enabled: true
     state: started
     scope: user
+
+- name: Set systemd-boot loader.conf
+  ansible.builtin.copy:
+    src: systemd-boot/loader.conf
+    dest: /boot/loader/loader.conf
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  become: true
