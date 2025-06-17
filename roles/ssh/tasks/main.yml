@@ -15,6 +15,7 @@
     name: ssh
     state: present
   become: true
+  notify: "Restart sshd"
 
 - name: Add running user to ssh group
   ansible.builtin.user:
@@ -31,6 +32,7 @@
     group: root
     mode: u=rw,g=r,o=r
   become: true
+  notify: "Restart sshd"
 
 - name: Create global known_hosts file
   ansible.builtin.template:
@@ -50,6 +52,7 @@
     times: false
     checksum: true
   become: true
+  notify: "Restart sshd"
 
 - name: Remove small Diffie-Hellman moduli
   ansible.builtin.shell: awk -i inplace '$5 >= 3071' /etc/ssh/moduli
@@ -61,6 +64,7 @@
     path: /etc/ssh/sshd_config.d/99-archlinux.conf
     state: absent
   become: true
+  notify: "Restart sshd"
 
 - name: Limit ssh access through firewall
   community.general.ufw:
@@ -77,6 +81,7 @@
     owner: root
     group: root
   become: true
+  notify: "Restart sshd"
 
 - name: Generate ED25519 key
   community.crypto.openssh_keypair:
@@ -85,12 +90,14 @@
     owner: root
     group: root
   become: true
+  notify: "Restart sshd"
 
 - name: Remove ECDSA key
   community.crypto.openssh_keypair:
     path: /etc/ssh/ssh_host_ecdsa_key
     state: absent
   become: true
+  notify: "Restart sshd"
 
 - name: Mask sshdgenkeys service
   ansible.builtin.systemd_service:
@@ -99,10 +106,10 @@
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
-- name: Restart sshd
+- name: Start and enable sshd
   ansible.builtin.systemd_service:
     name: sshd
-    state: restarted
+    state: started
     enabled: true
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
