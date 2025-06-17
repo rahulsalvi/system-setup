@@ -48,6 +48,7 @@
     owner: false
     group: false
     times: false
+    checksum: true
   become: true
 
 - name: Remove small Diffie-Hellman moduli

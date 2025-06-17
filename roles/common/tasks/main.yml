@@ -61,6 +61,7 @@
     group: false
     delete: true
     times: false
+    checksum: true
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
