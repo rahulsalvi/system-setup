@@ -3,6 +3,8 @@
   community.general.pacman:
     name:
       - openssh
+      - gawk
+      - rsync
       - ufw
     state: present
   become: true
@@ -39,19 +41,54 @@
     mode: u=rw,g=r,o=r
   become: true
 
-- name: Limit ssh
+- name: Set up ssh config files
+  ansible.posix.synchronize:
+    src: config/
+    dest: /etc/ssh/
+    owner: false
+    group: false
+  become: true
+
+- name: Remove small Diffie-Hellman moduli
+  ansible.builtin.shell: awk -i inplace '$5 >= 3071' /etc/ssh/moduli
+  changed_when: true
+  become: true
+
+- name: Remove default ssh config on Arch Linux
+  ansible.builtin.file:
+    path: /etc/ssh/sshd_config.d/99-archlinux.conf
+    state: absent
+  become: true
+
+- name: Limit ssh access through firewall
   community.general.ufw:
     rule: limit
     name: SSH
   become: true
 
-- name: Restart sshd
-  ansible.builtin.systemd_service:
-    name: sshd
-    state: restarted
-    enabled: true
+# Generate some keys so that sshd will start cleanly
+# These will likely be regenerated later when creating host certificates
+- name: Generate RSA key
+  community.crypto.openssh_keypair:
+    path: /etc/ssh/ssh_host_rsa_key
+    size: 4096
+    owner: root
+    group: root
   become: true
-  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Generate ED25519 key
+  community.crypto.openssh_keypair:
+    path: /etc/ssh/ssh_host_ed25519_key
+    type: ed25519
+    owner: root
+    group: root
+  become: true
+
+- name: Remove ECDSA key
+  community.crypto.openssh_keypair:
+    path: /etc/ssh/ssh_host_ecdsa_key
+    state: absent
+  become: true
 
 - name: Mask sshdgenkeys service
   ansible.builtin.systemd_service:
@@ -60,11 +97,10 @@
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
-- name: Remove ECDSA key
-  ansible.builtin.file:
-    path: /etc/ssh/{{ item }}
-    state: absent
-  loop:
-    - ssh_host_ecdsa_key
-    - ssh_host_ecdsa_key.pub
+- name: Restart sshd
+  ansible.builtin.systemd_service:
+    name: sshd
+    state: restarted
+    enabled: true
   become: true
+  when: ansible_facts['distribution'] == "Archlinux"
