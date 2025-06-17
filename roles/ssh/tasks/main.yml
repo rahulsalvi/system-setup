@@ -60,13 +60,6 @@
     creates: /etc/ssh/moduli-are-safe
   become: true
 
-- name: Remove default ssh config on Arch Linux
-  ansible.builtin.file:
-    path: /etc/ssh/sshd_config.d/99-archlinux.conf
-    state: absent
-  become: true
-  notify: "Restart sshd"
-
 - name: Limit ssh access through firewall
   community.general.ufw:
     rule: limit
