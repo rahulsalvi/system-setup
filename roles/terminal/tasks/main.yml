@@ -6,6 +6,7 @@
       - bat-extras
       - btop
       - chezmoi
+      - cowfortune
       - direnv
       - duf
       - erdtree
@@ -17,6 +18,7 @@
       - github-cli
       - htop
       - lazygit
+      - lolcat
       - ripgrep-all
       - starship
       - yazi

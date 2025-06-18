@@ -3,7 +3,6 @@
   community.general.pacman:
     name:
       - bind
-      - cowfortune
       - foot
       - foot-terminfo
       - fwupd
@@ -11,7 +10,6 @@
       - libfido2
       - libreoffice-still
       - libspnav
-      - lolcat
       - man-db
       - man-pages
       - nvtop
