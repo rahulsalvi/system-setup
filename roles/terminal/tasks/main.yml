@@ -42,3 +42,16 @@
     times: false
     checksum: true
   notify: "Rebuild bat cache"
+
+- name: Ensure btop theme directory exists
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_user_dir ~ '/.config', true) }}/btop/themes"
+    state: directory
+    mode: u=rwx,g=rx,o=rx
+
+- name: Set up btop themes
+  ansible.builtin.synchronize:
+    src: btop/
+    dest: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_user_dir ~ '/.config', true) }}/btop/themes/"
+    times: false
+    checksum: true
