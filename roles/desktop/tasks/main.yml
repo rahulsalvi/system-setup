@@ -86,3 +86,12 @@
     enabled: true
     state: started
   become: true
+
+- name: Set NetworkManager to use IPv6 temporary addresses by default
+  ansible.builtin.copy:
+    src: ip6-privacy.conf
+    dest: /etc/NetworkManager/conf.d/ip6-privacy.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
