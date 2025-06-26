@@ -142,3 +142,10 @@
     enabled: true
     state: started
   become: true
+
+- name: Enable fstrim timer
+  ansible.builtin.systemd_service:
+    name: fstrim.timer
+    enabled: true
+    state: started
+  become: true
