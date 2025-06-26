@@ -14,6 +14,7 @@
       - python
       - python-pip
       - rsync
+      - rustup
       - step-cli
       - syncthing
       - tailscale
