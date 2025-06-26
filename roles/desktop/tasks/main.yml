@@ -3,6 +3,8 @@
   community.general.pacman:
     name:
       - bind
+      - bluez
+      - bluez-utils
       - foot
       - foot-terminfo
       - fwupd
