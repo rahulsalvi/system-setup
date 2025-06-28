@@ -1,0 +1,27 @@
+---
+- name: Install secure-boot packages
+  community.general.pacman:
+    name:
+      - sbctl
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Ensure /etc/sbctl directory exists
+  ansible.builtin.file:
+    path: /etc/sbctl
+    state: directory
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  become: true
+
+- name: Set sbctl config file
+  ansible.builtin.copy:
+    src: sbctl.conf
+    dest: /etc/sbctl/sbctl.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  notify: Set up sbctl

@@ -5,3 +5,6 @@
 - hosts: laptops
   roles:
     - laptop
+- hosts: secure-boot
+  roles:
+    - secure-boot
