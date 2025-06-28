@@ -63,6 +63,12 @@
     state: started
   become: true
 
+- name: Enable systemd-boot-update
+  ansible.builtin.systemd_service:
+    name: systemd-boot-update
+    enabled: true
+  become: true
+
 - name: Add root certificates to system trust store
   ansible.posix.synchronize:
     src: pki/tls/
