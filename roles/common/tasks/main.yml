@@ -4,9 +4,6 @@
     name:
       - ansible
       - curl
-      - docker
-      - docker-buildx
-      - docker-compose
       - git
       - go
       - iperf3
@@ -95,24 +92,6 @@
   ansible.builtin.copy:
     src: ansible.cfg
     dest: /etc/ansible/ansible.cfg
-    owner: root
-    group: root
-    mode: u=rw,g=r,o=r
-  become: true
-
-- name: Ensure /etc/docker directory exists
-  ansible.builtin.file:
-    path: /etc/docker
-    state: directory
-    owner: root
-    group: root
-    mode: u=rwx,g=rx,o=rx
-  become: true
-
-- name: Set docker daemon.json file
-  ansible.builtin.copy:
-    src: daemon.json
-    dest: /etc/docker/daemon.json
     owner: root
     group: root
     mode: u=rw,g=r,o=r
