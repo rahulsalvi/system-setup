@@ -1,0 +1,4 @@
+# Valid values: "on-use" (default), "on-boot"
+# "on-use": docker daemon will start on first use
+# "on-boot": docker daemon will start at boot
+mode: "on-use"

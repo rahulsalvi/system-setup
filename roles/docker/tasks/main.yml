@@ -26,3 +26,19 @@
     group: root
     mode: u=rw,g=r,o=r
   become: true
+
+- name: Enable docker socket
+  ansible.builtin.systemd_service:
+    name: docker.socket
+    enabled: true
+    state: started
+  become: true
+  when: mode == "on-use"
+
+- name: Enable docker service
+  ansible.builtin.systemd_service:
+    name: docker.service
+    enabled: true
+    state: started
+  become: true
+  when: mode == "on-boot"

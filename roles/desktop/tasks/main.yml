@@ -80,13 +80,6 @@
     mode: u=rwx,g=rx,o=rx
   become: true
 
-- name: Enable docker socket
-  ansible.builtin.systemd_service:
-    name: docker.socket
-    enabled: true
-    state: started
-  become: true
-
 - name: Set NetworkManager to use IPv6 temporary addresses by default
   ansible.builtin.copy:
     src: ip6-privacy.conf
