@@ -1,0 +1,40 @@
+---
+- name: Install plymouth packages
+  community.general.pacman:
+    name:
+      - plymouth
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Add plymouth to mkinitcpio hooks
+  ansible.builtin.copy:
+    src: mkinitcpio-hooks.conf
+    dest: /etc/mkinitcpio.conf.d/70-plymouth-hooks.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+  notify: "Regenerate initramfs"
+
+- name: Ensure /etc/cmdline.d directory exists
+  ansible.builtin.file:
+    path: /etc/cmdline.d
+    state: directory
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Set kernel command line options
+  ansible.builtin.copy:
+    src: cmdline.conf
+    dest: /etc/cmdline.d/plymouth.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+  notify: "Regenerate initramfs"

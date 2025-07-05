@@ -1,0 +1,6 @@
+---
+- name: Regenerate initramfs
+  ansible.builtin.command: /usr/bin/mkinitcpio -P
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+  changed_when: true
