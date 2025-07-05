@@ -5,3 +5,4 @@ dependencies:
   - role: docker
   - role: secure-boot
   - role: plymouth
+  - role: reflector
