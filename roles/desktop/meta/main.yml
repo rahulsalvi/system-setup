@@ -3,6 +3,7 @@ dependencies:
   - role: common
   - role: flatpak
   - role: docker
+  - role: systemd-boot
   - role: secure-boot
   - role: plymouth
   - role: reflector
