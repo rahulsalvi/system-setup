@@ -3,3 +3,5 @@ dependencies:
   - role: common
   - role: flatpak
   - role: docker
+  - role: secure-boot
+  - role: plymouth
