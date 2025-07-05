@@ -1,13 +1,17 @@
 ---
 - name: Set up sbctl
-  ansible.builtin.command: /usr/bin/sbctl setup --setup
-  become: true
-  when: ansible_facts['distribution'] == "Archlinux"
-  changed_when: true
-  notify: Install signed systemd-boot binary
+  ansible.builtin.debug:
+    msg: "would have set up sbctl here"
 
-- name: Install signed systemd-boot binary
-  ansible.builtin.command: /usr/bin/bootctl install
-  become: true
-  when: ansible_facts['distribution'] == "Archlinux"
-  changed_when: true
+# - name: Set up sbctl
+#   ansible.builtin.command: /usr/bin/sbctl setup --setup
+#   become: true
+#   when: ansible_facts['distribution'] == "Archlinux"
+#   changed_when: true
+#   notify: Install signed systemd-boot binary
+#
+# - name: Install signed systemd-boot binary
+#   ansible.builtin.command: /usr/bin/bootctl install
+#   become: true
+#   when: ansible_facts['distribution'] == "Archlinux"
+#   changed_when: true
