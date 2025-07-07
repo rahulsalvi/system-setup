@@ -32,6 +32,18 @@
     dest: "{{ ansible_facts.user_dir }}/.var/app/com.brave.Browser/config/brave-flags.conf"
     mode: u=rw,g=r,o=r
 
+- name: Ensure discord config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.user_dir }}/.var/app/com.discordapp.Discord/config"
+    state: directory
+    mode: u=rwx,g=rx,o=rx
+
+- name: Set up discord-flags.conf
+  ansible.builtin.copy:
+    src: discord-flags.conf
+    dest: "{{ ansible_facts.user_dir }}/.var/app/com.discordapp.Discord/config/discord-flags.conf"
+    mode: u=rw,g=r,o=r
+
 - name: Allow localsend through firewall
   community.general.ufw:
     rule: allow
