@@ -14,6 +14,7 @@
       - com.discordapp.Discord
       - com.github.tchx84.Flatseal
       - com.prusa3d.PrusaSlicer
+      - com.spotify.Client
       - org.freecad.FreeCAD
       - org.inkscape.Inkscape
       - org.localsend.localsend_app
