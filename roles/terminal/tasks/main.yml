@@ -19,6 +19,8 @@
       - htop
       - lazygit
       - lolcat
+      - pre-commit
+      - prettier
       - ripgrep-all
       - starship
       - tldr
