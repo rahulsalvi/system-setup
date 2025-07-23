@@ -21,6 +21,7 @@
       - lolcat
       - ripgrep-all
       - starship
+      - tldr
       - yazi
       - zoxide
       - zsh-autosuggestions
