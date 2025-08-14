@@ -12,6 +12,7 @@
       - pacman-contrib
       - python
       - python-pip
+      - python-uv
       - rsync
       - rustup
       - step-cli
