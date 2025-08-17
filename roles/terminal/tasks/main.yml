@@ -25,6 +25,7 @@
       - ripgrep-all
       - starship
       - tldr
+      - xh
       - yazi
       - zoxide
       - zsh-autosuggestions
