@@ -18,6 +18,7 @@
       - org.freecad.FreeCAD
       - org.inkscape.Inkscape
       - org.localsend.localsend_app
+      - org.libreoffice.LibreOffice
     state: present
 
 - name: Ensure brave config directory exists

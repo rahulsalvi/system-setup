@@ -6,7 +6,6 @@
       - bluez-utils
       - foot
       - git-crypt
-      - libreoffice-still
       - libspnav
       - nvtop
       - rpi-imager
