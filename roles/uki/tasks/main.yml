@@ -1,0 +1,30 @@
+---
+- name: Set /etc/kernel/cmdline
+  ansible.builtin.copy:
+    src: cmdline
+    dest: /etc/kernel/cmdline
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  notify: "Regenerate initramfs"
+
+- name: Set /etc/crypttab.initramfs
+  ansible.builtin.copy:
+    src: crypttab.initramfs
+    dest: /etc/crypttab.initramfs
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  notify: "Regenerate initramfs"
+
+- name: Use systemd mkinitcpio hooks
+  ansible.builtin.copy:
+    src: mkinitcpio-hooks.conf
+    dest: /etc/mkinitcpio.conf.d/50-systemd-hooks.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  notify: "Regenerate initramfs"
