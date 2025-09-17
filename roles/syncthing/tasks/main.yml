@@ -1,0 +1,15 @@
+---
+- name: Install common packages
+  community.general.pacman:
+    name:
+      - syncthing
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Enable syncthing for running user
+  ansible.builtin.systemd_service:
+    name: "syncthing@{{ ansible_user_id }}"
+    enabled: true
+    state: started
+  become: true

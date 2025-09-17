@@ -9,3 +9,4 @@ dependencies:
   - role: reflector
   - role: yubikey
   - role: fwupd
+  - role: syncthing
