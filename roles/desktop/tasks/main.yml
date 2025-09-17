@@ -35,25 +35,6 @@
     state: started
   become: true
 
-- name: Ensure environment.d config directory exists
-  ansible.builtin.file:
-    path: "{{ ansible_facts.user_dir }}/.config/environment.d"
-    state: directory
-    mode: u=rwx,g=rx,o=rx
-
-- name: Set up SSH_AUTH_SOCK
-  ansible.builtin.copy:
-    src: ssh_auth_socket.conf
-    dest: "{{ ansible_facts.user_dir }}/.config/environment.d/ssh_auth_socket.conf"
-    mode: u=rw,g=r,o=r
-
-- name: Enable ssh-agent
-  ansible.builtin.systemd_service:
-    name: ssh-agent
-    enabled: true
-    state: started
-    scope: user
-
 - name: Set NetworkManager to use IPv6 temporary addresses by default
   ansible.builtin.copy:
     src: ip6-privacy.conf
