@@ -7,7 +7,6 @@
       - bluez-utils
       - foot
       - foot-terminfo
-      - fwupd
       - git-crypt
       - libreoffice-still
       - libspnav
@@ -32,33 +31,6 @@
 - name: Enable bluetooth service
   ansible.builtin.systemd_service:
     name: bluetooth
-    enabled: true
-    state: started
-  become: true
-
-- name: Disable fwupd p2p
-  community.general.ini_file:
-    path: /etc/fwupd/fwupd.conf
-    section: fwupd
-    option: P2pPolicy
-    mode: u=rw,g=r
-    value: nothing
-    no_extra_spaces: true
-  become: true
-
-- name: Disable fwupd secure boot shim
-  community.general.ini_file:
-    path: /etc/fwupd/fwupd.conf
-    section: uefi_capsule
-    option: DisableShimForSecureBoot
-    mode: u=rw,g=r
-    value: true
-    no_extra_spaces: true
-  become: true
-
-- name: Enable fwupd-refresh timer
-  ansible.builtin.systemd_service:
-    name: fwupd-refresh.timer
     enabled: true
     state: started
   become: true

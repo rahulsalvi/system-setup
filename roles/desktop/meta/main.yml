@@ -8,3 +8,4 @@ dependencies:
   - role: plymouth
   - role: reflector
   - role: yubikey
+  - role: fwupd
