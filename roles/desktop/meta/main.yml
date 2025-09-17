@@ -1,12 +1,10 @@
 ---
 dependencies:
   - role: common
+  - role: physical
   - role: flatpak
   - role: docker
-  - role: systemd-boot
-  - role: secure-boot
   - role: plymouth
   - role: reflector
   - role: yubikey
-  - role: fwupd
   - role: syncthing
