@@ -1,0 +1,2 @@
+root0 /dev/disk/by-label/cryptroot0 none tpm2-device=auto
+root1 /dev/disk/by-label/cryptroot1 none tpm2-device=auto

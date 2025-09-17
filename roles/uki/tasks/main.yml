@@ -1,7 +1,7 @@
 ---
 - name: Set /etc/kernel/cmdline
   ansible.builtin.copy:
-    src: cmdline
+    src: "{{ root_disk_mode }}/cmdline"
     dest: /etc/kernel/cmdline
     owner: root
     group: root
@@ -11,7 +11,7 @@
 
 - name: Set /etc/crypttab.initramfs
   ansible.builtin.copy:
-    src: crypttab.initramfs
+    src: "{{ root_disk_mode }}/crypttab.initramfs"
     dest: /etc/crypttab.initramfs
     owner: root
     group: root

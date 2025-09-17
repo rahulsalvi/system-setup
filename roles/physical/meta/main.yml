@@ -2,5 +2,7 @@
 dependencies:
   - role: fwupd
   - role: uki
+    vars:
+      root_disk_mode: "{{ uki_root_disk_mode }}"
   - role: secure-boot
   - role: systemd-boot
