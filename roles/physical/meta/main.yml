@@ -1,0 +1,6 @@
+---
+dependencies:
+  - role: fwupd
+  - role: uki
+  - role: secure-boot
+  - role: systemd-boot
