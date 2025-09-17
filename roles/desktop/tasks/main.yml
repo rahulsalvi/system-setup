@@ -2,16 +2,12 @@
 - name: Install desktop packages
   community.general.pacman:
     name:
-      - bind
       - bluez
       - bluez-utils
       - foot
-      - foot-terminfo
       - git-crypt
       - libreoffice-still
       - libspnav
-      - man-db
-      - man-pages
       - nvtop
       - rpi-imager
       - ttf-0xproto-nerd

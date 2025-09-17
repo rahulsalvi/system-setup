@@ -3,12 +3,16 @@
   community.general.pacman:
     name:
       - ansible
+      - bind
       - curl
+      - foot-terminfo
       - git
       - go
       - iperf3
       - jq
       - less
+      - man-db
+      - man-pages
       - pacman-contrib
       - python
       - python-pip
