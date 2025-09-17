@@ -19,6 +19,7 @@
       - org.inkscape.Inkscape
       - org.localsend.localsend_app
       - org.libreoffice.LibreOffice
+      - eu.betterbird.Betterbird
     state: present
 
 - name: Ensure brave config directory exists
