@@ -9,7 +9,6 @@
       - foot-terminfo
       - fwupd
       - git-crypt
-      - libfido2
       - libreoffice-still
       - libspnav
       - man-db
@@ -19,7 +18,6 @@
       - ttf-0xproto-nerd
       - usbutils
       - wl-clipboard
-      - yubikey-manager
     state: present
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
@@ -30,13 +28,6 @@
     enabled: true
     state: started
     scope: user
-
-- name: Enable pcscd socket
-  ansible.builtin.systemd_service:
-    name: pcscd.socket
-    enabled: true
-    state: started
-  become: true
 
 - name: Enable bluetooth service
   ansible.builtin.systemd_service:

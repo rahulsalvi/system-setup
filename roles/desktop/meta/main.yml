@@ -7,3 +7,4 @@ dependencies:
   - role: secure-boot
   - role: plymouth
   - role: reflector
+  - role: yubikey
