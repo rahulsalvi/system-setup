@@ -22,7 +22,6 @@
       - step-cli
       - syncthing
       - tailscale
-      - ufw
       - unzip
       - wget
       - zsh
@@ -95,30 +94,6 @@
     owner: root
     group: root
     mode: u=rw,g=r,o=r
-  become: true
-
-- name: Deny incoming traffic
-  community.general.ufw:
-    direction: incoming
-    policy: deny
-  become: true
-
-- name: Allow outgoing traffic
-  community.general.ufw:
-    direction: outgoing
-    policy: allow
-  become: true
-
-- name: Enable UFW
-  community.general.ufw:
-    state: enabled
-  become: true
-
-- name: Enable UFW service
-  ansible.builtin.systemd_service:
-    name: ufw
-    enabled: true
-    state: started
   become: true
 
 - name: Enable paccache timer

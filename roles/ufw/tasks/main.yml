@@ -1,0 +1,32 @@
+---
+- name: Install ufw packages
+  community.general.pacman:
+    name:
+      - ufw
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Deny incoming traffic
+  community.general.ufw:
+    direction: incoming
+    policy: deny
+  become: true
+
+- name: Allow outgoing traffic
+  community.general.ufw:
+    direction: outgoing
+    policy: allow
+  become: true
+
+- name: Enable UFW
+  community.general.ufw:
+    state: enabled
+  become: true
+
+- name: Enable UFW service
+  ansible.builtin.systemd_service:
+    name: ufw
+    enabled: true
+    state: started
+  become: true
