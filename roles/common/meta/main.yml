@@ -4,4 +4,5 @@ dependencies:
   - role: ufw
   - role: ssh
   - role: tailscale
+  - role: ansible
   - role: terminal
