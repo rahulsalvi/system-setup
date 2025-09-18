@@ -1,2 +1,2 @@
-root0 /dev/disk/by-label/cryptroot0 none tpm2-device=auto
-root1 /dev/disk/by-label/cryptroot1 none tpm2-device=auto
+root0 /dev/disk/by-label/cryptroot0 none tpm2-device=auto,tpm2-measure-pcr=yes
+root1 /dev/disk/by-label/cryptroot1 none tpm2-device=auto,tpm2-measure-pcr=yes
