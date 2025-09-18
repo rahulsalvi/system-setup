@@ -5,37 +5,61 @@
       - atuin
       - bat
       - bat-extras
+      - bind
       - btop
       - chezmoi
       - cowfortune
+      - curl
       - direnv
       - duf
       - erdtree
       - eza
       - fd
+      - foot-terminfo
       - fzf
+      - git
       - git-delta
       - git-zsh-completion
       - github-cli
+      - go
       - htop
+      - iperf3
+      - jq
       - lazygit
+      - less
       - lolcat
+      - man-db
+      - man-pages
       - pre-commit
       - prettier
+      - python
+      - python-pip
+      - python-uv
       - ripgrep-all
+      - rsync
+      - rustup
       - starship
+      - step-cli
       - tldr
+      - unzip
+      - wget
       - xh
       - yazi
       - zoxide
+      - zsh
       - zsh-autosuggestions
       - zsh-completions
       - zsh-history-substring-search
       - zsh-syntax-highlighting
-      - rsync # for synchronize below
     state: present
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Set running user's shell to zsh
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/zsh
+  become: true
 
 - name: Ensure bat theme directory exists
   ansible.builtin.file:
