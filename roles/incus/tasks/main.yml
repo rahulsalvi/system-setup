@@ -1,0 +1,27 @@
+---
+- name: Install incus packages
+  community.general.pacman:
+    name:
+      - incus
+      - incus-ui
+      - iptables-nft
+      - virt-viewer
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Enable incus socket
+  ansible.builtin.systemd_service:
+    name: incus.socket
+    enabled: true
+    state: started
+  become: true
+  when: startup_mode == "on-use"
+
+- name: Enable incus service
+  ansible.builtin.systemd_service:
+    name: incus.service
+    enabled: true
+    state: started
+  become: true
+  when: startup_mode == "on-boot"

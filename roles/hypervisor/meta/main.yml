@@ -4,3 +4,6 @@ dependencies:
   - role: physical
     vars:
       uki_root_disk_mode: "raid1"
+  - role: incus
+    vars:
+      startup_mode: "on-boot"

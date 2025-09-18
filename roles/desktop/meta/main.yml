@@ -4,6 +4,7 @@ dependencies:
   - role: physical
   - role: flatpak
   - role: docker
+  - role: incus
   - role: plymouth
   - role: yubikey
   - role: syncthing

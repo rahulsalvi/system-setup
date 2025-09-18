@@ -1,0 +1,4 @@
+# Valid values: "on-use" (default), "on-boot"
+# "on-use": incus daemon will start on first use
+# "on-boot": incus daemon will start at boot
+startup_mode: "on-use"
