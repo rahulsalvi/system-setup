@@ -5,6 +5,7 @@
       - incus
       - incus-ui
       - iptables-nft
+      - lego
       - virt-viewer
     state: present
   become: true
