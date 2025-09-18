@@ -3,4 +3,5 @@ dependencies:
   - role: pacman
   - role: ufw
   - role: ssh
+  - role: tailscale
   - role: terminal
