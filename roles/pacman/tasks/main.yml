@@ -8,6 +8,24 @@
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
+- name: Enable pacman colors
+  community.general.ini_file:
+    path: /etc/pacman.conf
+    section: options
+    option: Color
+    allow_no_value: true
+    create: false
+  become: true
+
+- name: Pacman loves candy
+  community.general.ini_file:
+    path: /etc/pacman.conf
+    section: options
+    option: ILoveCandy
+    allow_no_value: true
+    create: false
+  become: true
+
 - name: Enable paccache timer
   ansible.builtin.systemd_service:
     name: paccache.timer
