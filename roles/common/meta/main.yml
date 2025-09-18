@@ -1,6 +1,7 @@
 ---
 dependencies:
   - role: pacman
+  - role: systemd-resolved
   - role: ufw
   - role: ssh
   - role: tailscale
