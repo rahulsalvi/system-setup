@@ -7,3 +7,4 @@ dependencies:
   - role: tailscale
   - role: ansible
   - role: terminal
+  - role: tls
