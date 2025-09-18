@@ -1,5 +1,6 @@
 ---
 dependencies:
+  - role: pacman
   - role: ufw
   - role: ssh
   - role: terminal

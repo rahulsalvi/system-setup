@@ -1,0 +1,52 @@
+---
+- name: Install pacman packages
+  community.general.pacman:
+    name:
+      - pacman-contrib
+      - reflector
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Enable paccache timer
+  ansible.builtin.systemd_service:
+    name: paccache.timer
+    enabled: true
+    state: started
+  become: true
+
+- name: Ensure /etc/makepkg.conf.d directory exists
+  ansible.builtin.file:
+    path: /etc/makepkg.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  become: true
+
+- name: Configure makepkg to use multiple cores
+  ansible.builtin.copy:
+    src: multicore.conf
+    dest: /etc/makepkg.conf.d/multicore.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+
+- name: Set up reflector config
+  ansible.builtin.copy:
+    src: reflector.conf
+    dest: /etc/xdg/reflector/reflector.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+  notify: "Run reflector"
+
+- name: Enable reflector timer
+  ansible.builtin.systemd_service:
+    name: reflector.timer
+    enabled: true
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"

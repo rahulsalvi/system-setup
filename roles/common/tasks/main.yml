@@ -13,7 +13,6 @@
       - less
       - man-db
       - man-pages
-      - pacman-contrib
       - python
       - python-pip
       - python-uv
@@ -83,31 +82,6 @@
   ansible.builtin.copy:
     src: ansible.cfg
     dest: /etc/ansible/ansible.cfg
-    owner: root
-    group: root
-    mode: u=rw,g=r,o=r
-  become: true
-
-- name: Enable paccache timer
-  ansible.builtin.systemd_service:
-    name: paccache.timer
-    enabled: true
-    state: started
-  become: true
-
-- name: Ensure /etc/makepkg.conf.d directory exists
-  ansible.builtin.file:
-    path: /etc/makepkg.conf.d
-    state: directory
-    owner: root
-    group: root
-    mode: u=rwx,g=rx,o=rx
-  become: true
-
-- name: Configure makepkg to use multiple cores
-  ansible.builtin.copy:
-    src: multicore.conf
-    dest: /etc/makepkg.conf.d/multicore.conf
     owner: root
     group: root
     mode: u=rw,g=r,o=r

@@ -5,6 +5,5 @@ dependencies:
   - role: flatpak
   - role: docker
   - role: plymouth
-  - role: reflector
   - role: yubikey
   - role: syncthing
