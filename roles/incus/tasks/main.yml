@@ -10,6 +10,28 @@
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
+- name: Set up subuids for root user
+  ansible.builtin.lineinfile:
+    path: /etc/subuid
+    regexp: "^root:"
+    line: root:1000000:1000000000
+    create: true
+    mode: u=rw,g=r,o=r
+    owner: root
+    group: root
+  become: true
+
+- name: Set up subgids for root user
+  ansible.builtin.lineinfile:
+    path: /etc/subgid
+    regexp: "^root:"
+    line: root:1000000:1000000000
+    create: true
+    mode: u=rw,g=r,o=r
+    owner: root
+    group: root
+  become: true
+
 - name: Enable incus socket
   ansible.builtin.systemd_service:
     name: incus.socket
