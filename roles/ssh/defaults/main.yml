@@ -1,0 +1,3 @@
+---
+# whether to set up ssh-agent for the running user
+enable_agent: false

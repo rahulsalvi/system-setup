@@ -29,12 +29,14 @@
     path: "{{ ansible_facts.user_dir }}/.config/environment.d"
     state: directory
     mode: u=rwx,g=rx,o=rx
+  when: enable_agent
 
 - name: Set up SSH_AUTH_SOCK
   ansible.builtin.copy:
     src: ssh_auth_socket.conf
     dest: "{{ ansible_facts.user_dir }}/.config/environment.d/ssh_auth_socket.conf"
     mode: u=rw,g=r,o=r
+  when: enable_agent
 
 - name: Enable ssh-agent
   ansible.builtin.systemd_service:
@@ -42,6 +44,7 @@
     enabled: true
     state: started
     scope: user
+  when: enable_agent
 
 - name: Create trusted user CA keys file
   ansible.builtin.assemble:

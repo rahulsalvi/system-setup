@@ -4,6 +4,8 @@ dependencies:
   - role: systemd-resolved
   - role: ufw
   - role: ssh
+    vars:
+      enable_agent: "{{ ssh_enable_agent }}"
   - role: tailscale
   - role: ansible
   - role: terminal
