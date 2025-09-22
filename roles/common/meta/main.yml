@@ -10,3 +10,4 @@ dependencies:
   - role: ansible
   - role: terminal
   - role: tls
+  - role: apparmor

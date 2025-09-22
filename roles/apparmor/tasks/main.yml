@@ -1,0 +1,35 @@
+---
+- name: Install apparmor packages
+  community.general.pacman:
+    name:
+      - apparmor
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Enable apparmor service
+  ansible.builtin.systemd_service:
+    name: apparmor
+    enabled: true
+  become: true
+
+- name: Ensure /etc/cmdline.d directory exists
+  ansible.builtin.file:
+    path: /etc/cmdline.d
+    state: directory
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Set kernel command line options
+  ansible.builtin.copy:
+    src: cmdline.conf
+    dest: /etc/cmdline.d/apparmor.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+  notify: "Regenerate initramfs"
