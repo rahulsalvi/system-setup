@@ -1,0 +1,4 @@
+---
+# Valid values: "simple" (default)
+# "simple": simple DHCP configuration for all ethernet devices
+profile: "simple"

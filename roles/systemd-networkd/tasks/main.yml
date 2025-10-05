@@ -1,0 +1,27 @@
+---
+- name: Install systemd-networkd packages
+  community.general.pacman:
+    name:
+      - rsync
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Set up systemd-networkd config files
+  ansible.posix.synchronize:
+    src: "{{ profile }}/"
+    dest: /etc/systemd/networkd/
+    owner: false
+    group: false
+    delete: true
+    times: false
+    checksum: true
+  become: true
+  notify: "Restart systemd-networkd"
+
+- name: Enable systemd-networkd
+  ansible.builtin.systemd_service:
+    name: systemd-networkd
+    enabled: true
+    state: started
+  become: true
