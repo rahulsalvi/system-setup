@@ -10,7 +10,7 @@
 - name: Set up systemd-networkd config files
   ansible.posix.synchronize:
     src: "{{ profile }}/"
-    dest: /etc/systemd/networkd/
+    dest: /etc/systemd/network/
     owner: false
     group: false
     delete: true
