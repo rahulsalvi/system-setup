@@ -1,16 +1,7 @@
 ---
-- name: Remove iptables
-  community.general.pacman:
-    name:
-      - iptables
-    state: absent
-    force: true
-  become: true
-
 - name: Install ufw packages
   community.general.pacman:
     name:
-      - iptables-nft
       - ufw
     state: present
   become: true

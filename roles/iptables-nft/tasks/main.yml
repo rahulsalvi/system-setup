@@ -1,0 +1,17 @@
+---
+- name: Remove iptables
+  community.general.pacman:
+    name:
+      - iptables
+    state: absent
+    force: true
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Install iptables-nft packages
+  community.general.pacman:
+    name:
+      - iptables-nft
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
