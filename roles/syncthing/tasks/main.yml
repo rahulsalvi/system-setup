@@ -1,5 +1,5 @@
 ---
-- name: Install common packages
+- name: Install syncthing packages
   community.general.pacman:
     name:
       - syncthing
