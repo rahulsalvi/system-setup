@@ -1,6 +1,8 @@
 ---
 dependencies:
   - role: common
+  - role: apparmor
+  - role: lockdown
   - role: physical
     vars:
       uki_root_disk_mode: "raid1"

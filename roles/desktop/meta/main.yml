@@ -10,3 +10,5 @@ dependencies:
   - role: plymouth
   - role: yubikey
   - role: syncthing
+  - role: apparmor
+  - role: lockdown
