@@ -1,4 +1,11 @@
 ---
+- name: Remove iptables
+  community.general.pacman:
+    name:
+      - iptables
+    state: absent
+  become: true
+
 - name: Install ufw packages
   community.general.pacman:
     name:
