@@ -7,6 +7,14 @@
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
+- name: Install systemd-networkd packages
+  ansible.builtin.apt:
+    name:
+      - rsync
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Ubuntu"
+
 - name: Set up systemd-networkd config files
   ansible.posix.synchronize:
     src: "{{ profile }}/"
