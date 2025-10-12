@@ -1,13 +1,17 @@
 ---
 dependencies:
-  # should just work
   - role: systemd-resolved
-    # need to check packages
-    # need to check systemd service
+  - role: systemd-networkd
+    vars:
+      profile: "simple"
   - role: ufw
-    # check over everything
-  - role: ssh
-    # needs to modify packages array
-  - role: ansible
-    # basically needs everything rewritten
-  - role: tls
+  # check over everything
+  # - role: ssh
+  # need to setup repo and packages
+  # - role: tailscale
+  # needs to modify packages array
+  # - role: ansible
+  # basically needs everything rewritten
+  # - role: tls
+  # need to setup repo and packages
+  # - role: docker
