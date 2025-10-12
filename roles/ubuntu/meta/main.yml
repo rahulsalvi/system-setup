@@ -9,7 +9,6 @@ dependencies:
   # - role: ssh
   - role: tailscale
   - role: ansible
-  # basically needs everything rewritten
-  # - role: tls
+  - role: tls
   # need to setup repo and packages
   # - role: docker

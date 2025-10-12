@@ -5,3 +5,10 @@
   listen: "Update CA certificates"
   when: ansible_facts['distribution'] == "Archlinux"
   changed_when: true
+
+- name: Update CA certificates (Ubuntu)
+  ansible.builtin.command: /usr/sbin/update-ca-certificates
+  become: true
+  listen: "Update CA certificates"
+  when: ansible_facts['distribution'] == "Ubuntu"
+  changed_when: true

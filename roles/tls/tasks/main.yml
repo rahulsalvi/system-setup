@@ -7,6 +7,15 @@
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
+- name: Install tls packages
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - rsync
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Ubuntu"
+
 - name: Add root certificates to system trust store
   ansible.posix.synchronize:
     src: pki/tls/
@@ -18,4 +27,17 @@
     checksum: true
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
+  notify: "Update CA certificates"
+
+- name: Add root certificates to system trust store
+  ansible.posix.synchronize:
+    src: pki/tls/
+    dest: /usr/local/share/ca-certificates/
+    owner: false
+    group: false
+    delete: true
+    times: false
+    checksum: true
+  become: true
+  when: ansible_facts['distribution'] == "Ubuntu"
   notify: "Update CA certificates"
