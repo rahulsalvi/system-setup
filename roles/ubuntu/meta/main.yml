@@ -8,8 +8,7 @@ dependencies:
   # check over everything
   # - role: ssh
   - role: tailscale
-  # needs to modify packages array
-  # - role: ansible
+  - role: ansible
   # basically needs everything rewritten
   # - role: tls
   # need to setup repo and packages
