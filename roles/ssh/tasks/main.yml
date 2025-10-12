@@ -10,6 +10,18 @@
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
+- name: Install ssh packages
+  ansible.builtin.apt:
+    name:
+      - openssh-client
+      - openssh-server
+      - gawk
+      - rsync
+      - ufw
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Ubuntu"
+
 - name: Create ssh group
   ansible.builtin.group:
     name: ssh
@@ -90,8 +102,6 @@
     name: SSH
   become: true
 
-# Generate some keys so that sshd will start cleanly
-# These will likely be regenerated later when creating host certificates
 - name: Generate RSA key
   community.crypto.openssh_keypair:
     path: /etc/ssh/ssh_host_rsa_key
@@ -131,3 +141,11 @@
     enabled: true
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Start and enable sshd
+  ansible.builtin.systemd_service:
+    name: ssh
+    state: started
+    enabled: true
+  become: true
+  when: ansible_facts['distribution'] == "Ubuntu"
