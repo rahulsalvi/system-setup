@@ -5,8 +5,7 @@ dependencies:
     vars:
       profile: "simple"
   - role: ufw
-  # check over everything
-  # - role: ssh
+  - role: ssh
   - role: tailscale
   - role: ansible
   - role: tls
