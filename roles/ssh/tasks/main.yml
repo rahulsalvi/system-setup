@@ -101,6 +101,14 @@
     rule: limit
     name: SSH
   become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Limit ssh access through firewall
+  community.general.ufw:
+    rule: limit
+    name: OpenSSH
+  become: true
+  when: ansible_facts['distribution'] == "Ubuntu"
 
 - name: Generate RSA key
   community.crypto.openssh_keypair:
