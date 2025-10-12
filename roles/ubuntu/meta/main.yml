@@ -1,0 +1,13 @@
+---
+dependencies:
+  # should just work
+  - role: systemd-resolved
+    # need to check packages
+    # need to check systemd service
+  - role: ufw
+    # check over everything
+  - role: ssh
+    # needs to modify packages array
+  - role: ansible
+    # basically needs everything rewritten
+  - role: tls
