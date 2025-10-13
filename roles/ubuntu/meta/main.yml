@@ -9,5 +9,6 @@ dependencies:
   - role: tailscale
   - role: ansible
   - role: tls
-  # need to setup repo and packages
-  # - role: docker
+  - role: docker
+    vars:
+      mode: "none"
