@@ -11,4 +11,4 @@ dependencies:
   - role: tls
   - role: docker
     vars:
-      mode: "none"
+      mode: "on-boot"
