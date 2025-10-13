@@ -11,6 +11,3 @@
 - hosts: virtual-machine
   roles:
     - virtual-machine
-- hosts: ubuntu
-  roles:
-    - ubuntu
