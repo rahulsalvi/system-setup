@@ -1,6 +1,7 @@
 ---
 dependencies:
   - role: pacman
+    when: ansible_facts['distribution'] == "Archlinux"
   - role: systemd-resolved
   - role: ufw
   - role: ssh
@@ -9,4 +10,5 @@ dependencies:
   - role: tailscale
   - role: ansible
   - role: terminal
+    when: ansible_facts['distribution'] == "Archlinux"
   - role: tls
