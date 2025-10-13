@@ -11,3 +11,6 @@
 - hosts: virtual-machine
   roles:
     - virtual-machine
+- hosts: cloud-instances
+  roles:
+    - cloud-instance

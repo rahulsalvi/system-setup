@@ -1,0 +1,6 @@
+---
+dependencies:
+  - role: virtual-machine
+  - role: docker
+    vars:
+      mode: "on-boot"
