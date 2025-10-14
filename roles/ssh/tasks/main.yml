@@ -135,6 +135,31 @@
   become: true
   notify: "Restart sshd"
 
+- name: Copy ssh-cert-renewer service files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  loop:
+    - systemd/ssh-cert-renewer@.service
+    - systemd/ssh-cert-renewer@.timer
+  become: true
+  when: cert_renewal_mode == "step"
+
+- name: Enable ssh certificate renewal
+  ansible.builtin.systemd_service:
+    name: "ssh-cert-renewer@{{ item }}.timer"
+    state: started
+    enabled: true
+    daemon_reload: true
+  loop:
+    - ed25519
+    - rsa
+  become: true
+  when: cert_renewal_mode == "step"
+
 - name: Mask sshdgenkeys service
   ansible.builtin.systemd_service:
     name: sshdgenkeys

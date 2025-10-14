@@ -1,0 +1,12 @@
+[Unit]
+Description=Timer for %i ssh certificate renewal
+Documentation=https://smallstep.com/docs/step-ca/renewal/#renewal-using-systemd-timers
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=6h
+FixedRandomDelay=true
+Persistent=true
+
+[Install]
+WantedBy=timers.target

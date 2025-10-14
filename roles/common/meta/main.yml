@@ -7,6 +7,7 @@ dependencies:
   - role: ssh
     vars:
       enable_agent: "{{ ssh_enable_agent }}"
+      cert_renewal_mode: "{{ ssh_cert_renewal_mode }}"
   - role: tailscale
   - role: ansible
   - role: terminal

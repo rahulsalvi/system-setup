@@ -1,0 +1,16 @@
+[Unit]
+Description=Renews %i ssh certificate
+After=network-online.target
+Documentation=https://smallstep.com/docs/step-ca/renewal/#renewal-using-systemd-timers
+ConditionPathExists=/etc/ssh/ssh_host_%i_key-cert.pub
+
+[Service]
+Type=oneshot
+User=root
+Environment=STEPPATH=/etc/step
+ExecCondition=/usr/bin/step-cli ssh needs-renewal /etc/ssh/ssh_host_%i_key-cert.pub
+ExecStart=/usr/bin/step-cli ssh renew --force /etc/ssh/ssh_host_%i_key-cert.pub /etc/ssh/ssh_host_%i_key
+ExecStartPost=/usr/bin/systemctl try-restart sshd.service
+
+[Install]
+WantedBy=multi-user.target
