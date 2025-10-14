@@ -1,3 +1,9 @@
 ---
 # whether to set up ssh-agent for the running user
 enable_agent: false
+
+# How to renew ssh host certificates
+# Valid values: "none" (default), "step"
+# "none": do not attempt to renew certificates
+# "step": use step-ca to renew certificates
+cert_renewal_mode: "none"

@@ -1,3 +1,4 @@
 ---
 # whether to set up ssh-agent for the running user
 ssh_enable_agent: false
+ssh_cert_renewal_mode: "none"
