@@ -1,0 +1,33 @@
+- name: Install step packages
+  community.general.pacman:
+    name:
+      - step-cli
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Set up smallstep apt key
+  ansible.builtin.get_url:
+    url: https://packages.smallstep.com/keys/apt/repo-signing-key.gpg
+    dest: /usr/share/keyrings/smallstep-keyring.asc
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- name: Set up smallstep apt repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/smallstep-keyring.asc] https://packages.smallstep.com/stable/debian debs main"
+    filename: smallstep
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- name: Install step packages
+  ansible.builtin.apt:
+    name:
+      - step-cli
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Ubuntu"

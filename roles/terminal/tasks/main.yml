@@ -39,7 +39,6 @@
       - rsync
       - rustup
       - starship
-      - step-cli
       - tldr
       - unzip
       - wget
