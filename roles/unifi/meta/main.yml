@@ -1,0 +1,10 @@
+---
+dependencies:
+  - role: systemd-resolved
+  - role: systemd-networkd
+    vars:
+      profile: "simple"
+  - role: ufw
+  - role: ssh
+  - role: ansible
+  - role: tls
