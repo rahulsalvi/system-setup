@@ -3,6 +3,7 @@ Description=Renews %i ssh certificate
 After=network-online.target
 Documentation=https://smallstep.com/docs/step-ca/renewal/#renewal-using-systemd-timers
 ConditionPathExists=/etc/ssh/ssh_host_%i_key-cert.pub
+ConditionPathExists=/etc/step/config/defaults.json
 
 [Service]
 Type=oneshot
