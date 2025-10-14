@@ -14,3 +14,6 @@
 - hosts: cloud-instances
   roles:
     - cloud-instance
+- hosts: unifi
+  roles:
+    - unifi
