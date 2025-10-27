@@ -1,5 +1,15 @@
-- name: Restart sshd
+- name: Restart sshd (Arch Linux)
   ansible.builtin.systemd_service:
     name: sshd
     state: restarted
   become: true
+  listen: "Restart sshd"
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Restart sshd (Ubuntu)
+  ansible.builtin.systemd_service:
+    name: ssh
+    state: restarted
+  become: true
+  listen: "Restart sshd"
+  when: ansible_facts['distribution'] == "Ubuntu"
