@@ -1,0 +1,23 @@
+---
+- name: Set up unifi firewall rules
+  community.general.ufw:
+    rule: allow
+    direction: in
+    port: "{{ item.0 }}"
+    proto: any
+    comment: "{{ item.1 }}"
+  become: true
+  loop:
+    - [3478, "UniFi Discovery"]
+    - [5005, "UniFi Controller Discovery"]
+    - [5514, "UniFi Remote Logging"]
+    - [6789, "UniFi Device Adoption"]
+    - [8080, "UniFi HTTP Portal"]
+    - [8443, "UniFi HTTPS Portal"]
+    - [8843, "UniFi Server Port"]
+    - [8880, "UniFi HTTP Redirect"]
+    - [8881, "UniFi HTTPS Redirect"]
+    - [8882, "UniFi STUN Server"]
+    - [9543, "UniFi API"]
+    - [10003, "UniFi AP/Device Monitoring"]
+    - [11443, "UniFi Websockets"]
