@@ -1,0 +1,51 @@
+---
+- name: Install hyprland packages
+  community.general.pacman:
+    name:
+      - hyprland
+      - uwsm
+      - xdg-desktop-portal-hyprland
+      - xdg-desktop-portal-gtk
+      - xdg-user-dirs
+      - polkit
+      - hyprpolkitagent
+      # - kwallet
+      # - kwallet-pam
+      # - kwalletmanager
+      - gnome-keyring
+      - libsecret
+      - seahorse
+      - nwg-look
+      - qt5-wayland
+      - qt6-wayland
+      - qt5ct
+      - qt6ct
+      - pipewire
+      - pipewire-alsa
+      - pipewire-audio
+      - pipewire-jack
+      - pipewire-pulse
+      - wireplumber
+      - libnotify
+      - swaync
+      - udiskie
+      - nwg-displays
+      - waybar
+      - fuzzel
+      - brightnessctl
+      - playerctl
+      - network-manager-applet
+      - blueman
+      - nwg-dock-hyprland
+      - hyprlock
+      - hypridle
+      - greetd
+      - greetd-regreet
+      - dolphin
+      # wallpaper
+      # file manager (dolphin?)
+      # screenshots
+      # clipboard
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
