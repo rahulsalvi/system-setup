@@ -46,3 +46,45 @@
     state: present
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Ensure hypr config directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.user_dir }}/.config/hypr"
+    state: directory
+    mode: u=rwx,g=rx,o=rx
+
+- name: Set up hyprland.conf
+  ansible.builtin.copy:
+    src: hypr/hyprland.conf
+    dest: "{{ ansible_facts.user_dir }}/.config/hypr/hyprland.conf"
+    mode: u=rw,g=r,o=r
+
+- name: Set up hypridle.conf
+  ansible.builtin.copy:
+    src: hypr/hypridle.conf
+    dest: "{{ ansible_facts.user_dir }}/.config/hypr/hypridle.conf"
+    mode: u=rw,g=r,o=r
+
+- name: Enable hyprpolkitagent
+  ansible.builtin.systemd_service:
+    name: hyprpolkitagent
+    enabled: true
+    scope: user
+
+- name: Enable swaync
+  ansible.builtin.systemd_service:
+    name: swaync
+    enabled: true
+    scope: user
+
+- name: Enable hypridle
+  ansible.builtin.systemd_service:
+    name: hypridle
+    enabled: true
+    scope: user
+
+- name: Enable waybar
+  ansible.builtin.systemd_service:
+    name: waybar
+    enabled: true
+    scope: user
