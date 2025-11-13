@@ -9,9 +9,6 @@
       - xdg-user-dirs
       - polkit
       - hyprpolkitagent
-      # - kwallet
-      # - kwallet-pam
-      # - kwalletmanager
       - gnome-keyring
       - libsecret
       - seahorse
