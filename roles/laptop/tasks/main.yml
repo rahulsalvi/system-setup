@@ -2,34 +2,7 @@
 - name: Install laptop packages
   community.general.pacman:
     name:
-      - tlp
+      - power-profiles-daemon
     state: present
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
-
-- name: Enable tlp
-  ansible.builtin.systemd_service:
-    name: tlp
-    enabled: true
-    state: started
-  become: true
-
-- name: Mask systemd-rfkill.service
-  ansible.builtin.systemd_service:
-    name: systemd-rfkill.service
-    masked: true
-  become: true
-
-- name: Mask systemd-rfkill.socket
-  ansible.builtin.systemd_service:
-    name: systemd-rfkill.socket
-    masked: true
-  become: true
-
-- name: Set SDDM HiDPI config
-  ansible.builtin.copy:
-    src: sddm_hidpi.conf
-    dest: /etc/sddm.conf.d/hidpi.conf
-    mode: u=rw,g=r,o=r
-  become: true
-  when: ansible_facts['env']['XDG_CURRENT_DESKTOP'] == "KDE"
