@@ -4,6 +4,7 @@ dependencies:
     vars:
       ssh_enable_agent: true
   - role: physical
+  - role: plasma
   - role: flatpak
   - role: docker
   - role: incus

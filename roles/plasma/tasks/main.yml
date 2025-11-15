@@ -1,0 +1,16 @@
+---
+- name: Install plasma packages
+  community.general.pacman:
+    name:
+      - kde-system-meta
+      - kde-utilities-meta
+      - plasma-meta
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Enable sddm service
+  ansible.builtin.systemd_service:
+    name: sddm
+    enabled: true
+  become: true
