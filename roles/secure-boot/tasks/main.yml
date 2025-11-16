@@ -24,7 +24,7 @@
     group: root
     mode: u=rw,g=r,o=r
   become: true
-  when: not install_microsoft_keys
+  when: not (install_microsoft_keys | bool)
   notify: Set up sbctl
 
 - name: Set sbctl config file with microsoft keys
@@ -35,5 +35,5 @@
     group: root
     mode: u=rw,g=r,o=r
   become: true
-  when: install_microsoft_keys
+  when: install_microsoft_keys | bool
   notify: Set up sbctl
