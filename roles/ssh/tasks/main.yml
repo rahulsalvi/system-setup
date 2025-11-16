@@ -31,7 +31,7 @@
 
 - name: Add running user to ssh group
   ansible.builtin.user:
-    name: "{{ ansible_user_id }}"
+    name: "{{ ansible_facts['user_id'] }}"
     groups: ssh
     append: true
   become: true

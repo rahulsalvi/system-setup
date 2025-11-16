@@ -9,7 +9,7 @@
 
 - name: Enable syncthing for running user
   ansible.builtin.systemd_service:
-    name: "syncthing@{{ ansible_user_id }}"
+    name: "syncthing@{{ ansible_facts['user_id'] }}"
     enabled: true
     state: started
   become: true

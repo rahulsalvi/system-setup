@@ -56,33 +56,33 @@
 
 - name: Set running user's shell to zsh
   ansible.builtin.user:
-    name: "{{ ansible_user_id }}"
+    name: "{{ ansible_facts['user_id'] }}"
     shell: /usr/bin/zsh
   become: true
 
 - name: Ensure bat theme directory exists
   ansible.builtin.file:
-    path: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_user_dir ~ '/.config', true) }}/bat/themes"
+    path: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_facts['user_dir'] ~ '/.config', true) }}/bat/themes"
     state: directory
     mode: u=rwx,g=rx,o=rx
 
 - name: Set up bat themes
   ansible.builtin.synchronize:
     src: bat/
-    dest: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_user_dir ~ '/.config', true) }}/bat/themes/"
+    dest: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_facts['user_dir'] ~ '/.config', true) }}/bat/themes/"
     times: false
     checksum: true
   notify: "Rebuild bat cache"
 
 - name: Ensure btop theme directory exists
   ansible.builtin.file:
-    path: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_user_dir ~ '/.config', true) }}/btop/themes"
+    path: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_facts['user_dir'] ~ '/.config', true) }}/btop/themes"
     state: directory
     mode: u=rwx,g=rx,o=rx
 
 - name: Set up btop themes
   ansible.builtin.synchronize:
     src: btop/
-    dest: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_user_dir ~ '/.config', true) }}/btop/themes/"
+    dest: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_facts['user_dir'] ~ '/.config', true) }}/btop/themes/"
     times: false
     checksum: true
