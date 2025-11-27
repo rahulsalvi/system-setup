@@ -1,6 +1,8 @@
 ---
 dependencies:
-  - role: virtual-machine
+  - role: common
+    vars:
+      ssh_cert_renewal_mode: "step"
   - role: docker
     vars:
       mode: "on-boot"
