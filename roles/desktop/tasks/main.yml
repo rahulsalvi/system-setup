@@ -10,6 +10,7 @@
       - nvtop
       - rpi-imager
       - ttf-0xproto-nerd
+      - noto-fonts-cjk
       - usbutils
       - wl-clipboard
     state: present
