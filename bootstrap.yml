@@ -1,0 +1,36 @@
+---
+- hosts: localhost
+  vars:
+    known_roles:
+      - desktops
+      - laptops
+      - hypervisors
+      - virtual-machine
+      - cloud-instances
+      - unifi
+  tasks:
+    - name: Validate machine_role is defined
+      ansible.builtin.assert:
+        that:
+          - machine_role is defined
+          - machine_role | length > 0
+        fail_msg: "machine_role is required. Example: -e machine_role=desktops"
+
+    - name: Validate machine_role is known
+      ansible.builtin.assert:
+        that:
+          - machine_role in known_roles
+        fail_msg: "Invalid machine_role '{{ machine_role }}'. Must be one of: {{ known_roles | join(', ') }}"
+
+    - name: Install ansible and configure /etc/ansible
+      ansible.builtin.include_role:
+        name: ansible
+
+    - name: Deploy /etc/ansible/hosts
+      ansible.builtin.template:
+        src: templates/hosts.j2
+        dest: /etc/ansible/hosts
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+      become: true

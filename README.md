@@ -4,14 +4,26 @@ For setting up new machines based on their role
 
 ## Usage
 
-1. create inventory file `/etc/ansible/hosts` with appropriate groups
+1. Bootstrap the machine with the appropriate role:
 
 ```bash
-[localhost]
-desktops
+ansible-pull -K -U https://github.com/rahulsalvi/system-setup.git \
+  -e machine_role=desktops \
+  bootstrap.yml
 ```
 
-1. run this playbook with `ansible-pull`
+See `bootstrap.yml` for valid roles.
+
+To override role defaults, pass `host_vars` as comma-separated key=value pairs:
+
+```bash
+ansible-pull -K -U https://github.com/rahulsalvi/system-setup.git \
+  -e machine_role=laptops \
+  -e 'host_vars=install_microsoft_keys=false' \
+  bootstrap.yml
+```
+
+1. Confirm `/etc/ansible/hosts` is correct, then run the main playbook:
 
 ```bash
 ansible-pull -K -U https://github.com/rahulsalvi/system-setup.git
