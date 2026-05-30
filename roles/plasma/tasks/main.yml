@@ -2,8 +2,6 @@
 - name: Install plasma packages
   community.general.pacman:
     name:
-      - kde-system-meta
-      - kde-utilities-meta
       - plasma-meta
     state: present
   become: true
@@ -14,3 +12,4 @@
     name: sddm
     enabled: true
   become: true
+  when: enable_sddm

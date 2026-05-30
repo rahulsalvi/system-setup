@@ -1,0 +1,3 @@
+---
+# whether to enable sddm
+enable_sddm: false
