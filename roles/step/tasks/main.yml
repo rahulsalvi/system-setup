@@ -6,20 +6,14 @@
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
-- name: Set up smallstep apt key
-  ansible.builtin.get_url:
-    url: https://packages.smallstep.com/keys/apt/repo-signing-key.gpg
-    dest: /usr/share/keyrings/smallstep-keyring.asc
-    owner: root
-    group: root
-    mode: u=rw,g=r,o=r
-  become: true
-  when: ansible_facts['distribution'] == "Ubuntu"
-
 - name: Set up smallstep apt repository
-  ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/usr/share/keyrings/smallstep-keyring.asc] https://packages.smallstep.com/stable/debian debs main"
-    filename: smallstep
+  ansible.builtin.deb822_repository:
+    name: smallstep
+    types: deb
+    uris: https://packages.smallstep.com/stable/debian
+    suites: debs
+    components: main
+    signed_by: https://packages.smallstep.com/keys/apt/repo-signing-key.gpg
     state: present
   become: true
   when: ansible_facts['distribution'] == "Ubuntu"

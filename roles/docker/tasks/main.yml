@@ -27,20 +27,14 @@
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
-- name: Set up docker apt key
-  ansible.builtin.get_url:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    dest: /usr/share/keyrings/docker-keyring.asc
-    owner: root
-    group: root
-    mode: u=rw,g=r,o=r
-  become: true
-  when: ansible_facts['distribution'] == "Ubuntu"
-
 - name: Set up docker apt repository
-  ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/usr/share/keyrings/docker-keyring.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
-    filename: docker
+  ansible.builtin.deb822_repository:
+    name: docker
+    types: deb
+    uris: https://download.docker.com/linux/ubuntu
+    suites: "{{ ansible_distribution_release }}"
+    components: stable
+    signed_by: https://download.docker.com/linux/ubuntu/gpg
     state: present
   become: true
   when: ansible_facts['distribution'] == "Ubuntu"
