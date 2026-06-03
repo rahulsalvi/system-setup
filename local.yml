@@ -16,9 +16,9 @@
   roles:
     - virtual_machine
 - name: Configure cloud instances
-  hosts: cloud-instances
+  hosts: cloud_instances
   roles:
-    - cloud-instance
+    - cloud_instance
 - name: Configure unifi
   hosts: unifi
   roles:

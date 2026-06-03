@@ -7,7 +7,7 @@
       - laptops
       - hypervisors
       - virtual_machines
-      - cloud-instances
+      - cloud_instances
       - unifi
   tasks:
     - name: Validate machine_role is defined
