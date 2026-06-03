@@ -67,7 +67,7 @@
     mode: u=rwx,g=rx,o=rx
 
 - name: Set up bat themes
-  ansible.builtin.synchronize:
+  ansible.posix.synchronize:
     src: bat/
     dest: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_facts['user_dir'] ~ '/.config', true) }}/bat/themes/"
     times: false
@@ -81,7 +81,7 @@
     mode: u=rwx,g=rx,o=rx
 
 - name: Set up btop themes
-  ansible.builtin.synchronize:
+  ansible.posix.synchronize:
     src: btop/
     dest: "{{ lookup('env', 'XDG_CONFIG_HOME') | default(ansible_facts['user_dir'] ~ '/.config', true) }}/btop/themes/"
     times: false
