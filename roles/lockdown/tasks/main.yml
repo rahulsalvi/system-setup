@@ -1,3 +1,4 @@
+---
 - name: Ensure /etc/cmdline.d directory exists
   ansible.builtin.file:
     path: /etc/cmdline.d
