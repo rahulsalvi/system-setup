@@ -41,14 +41,14 @@
     path: "{{ ansible_facts.user_dir }}/.config/environment.d"
     state: directory
     mode: u=rwx,g=rx,o=rx
-  when: enable_agent
+  when: ssh_enable_agent
 
 - name: Set up SSH_AUTH_SOCK
   ansible.builtin.copy:
     src: ssh_auth_socket.conf
     dest: "{{ ansible_facts.user_dir }}/.config/environment.d/ssh_auth_socket.conf"
     mode: u=rw,g=r,o=r
-  when: enable_agent
+  when: ssh_enable_agent
 
 - name: Enable ssh-agent
   ansible.builtin.systemd_service:
@@ -56,7 +56,7 @@
     enabled: true
     state: started
     scope: user
-  when: enable_agent
+  when: ssh_enable_agent
 
 - name: Create trusted user CA keys file
   ansible.builtin.assemble:
@@ -146,7 +146,7 @@
     - systemd/ssh-cert-renewer@.service
     - systemd/ssh-cert-renewer@.timer
   become: true
-  when: cert_renewal_mode == "step"
+  when: ssh_cert_renewal_mode == "step"
 
 - name: Enable ssh certificate renewal
   ansible.builtin.systemd_service:
@@ -158,7 +158,7 @@
     - ed25519
     - rsa
   become: true
-  when: cert_renewal_mode == "step"
+  when: ssh_cert_renewal_mode == "step"
 
 - name: Mask sshdgenkeys service
   ansible.builtin.systemd_service:
