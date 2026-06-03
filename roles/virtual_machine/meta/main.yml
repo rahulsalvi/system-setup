@@ -5,4 +5,4 @@ dependencies:
       ssh_cert_renewal_mode: "step"
   - role: systemd_networkd
     vars:
-      profile: "simple"
+      systemd_networkd_profile: "simple"

@@ -3,7 +3,7 @@ dependencies:
   - role: systemd_resolved
   - role: systemd_networkd
     vars:
-      profile: "simple"
+      systemd_networkd_profile: "simple"
   - role: ufw
   - role: ssh
   - role: ansible
