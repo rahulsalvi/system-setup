@@ -57,7 +57,7 @@
     enabled: true
     state: started
   become: true
-  when: mode == "on-use"
+  when: docker_daemon_startup_mode == "on-use"
 
 - name: Enable docker service
   ansible.builtin.systemd_service:
@@ -65,4 +65,4 @@
     enabled: true
     state: started
   become: true
-  when: mode == "on-boot"
+  when: docker_daemon_startup_mode == "on-boot"

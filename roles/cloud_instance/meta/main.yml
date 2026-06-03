@@ -5,4 +5,4 @@ dependencies:
       ssh_cert_renewal_mode: "step"
   - role: docker
     vars:
-      mode: "on-boot"
+      docker_daemon_startup_mode: "on-boot"
