@@ -1,4 +1,4 @@
 ---
 # whether to install microsoft secure boot keys
 # true by default since it's the safer option
-install_microsoft_keys: true
+secure_boot_install_microsoft_keys: true
