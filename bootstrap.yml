@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Bootstrap host for system setup
+  hosts: localhost
   vars:
     known_roles:
       - desktops

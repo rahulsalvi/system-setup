@@ -1,19 +1,25 @@
 ---
-- hosts: desktops
+- name: Configure desktops
+  hosts: desktops
   roles:
     - desktop
-- hosts: laptops
+- name: Configure laptops
+  hosts: laptops
   roles:
     - laptop
-- hosts: hypervisors
+- name: Configure hypervisors
+  hosts: hypervisors
   roles:
     - hypervisor
-- hosts: virtual-machine
+- name: Configure virtual machines
+  hosts: virtual-machine
   roles:
     - virtual-machine
-- hosts: cloud-instances
+- name: Configure cloud instances
+  hosts: cloud-instances
   roles:
     - cloud-instance
-- hosts: unifi
+- name: Configure unifi
+  hosts: unifi
   roles:
     - unifi
