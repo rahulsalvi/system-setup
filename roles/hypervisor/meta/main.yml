@@ -10,4 +10,4 @@ dependencies:
       uki_root_disk_mode: "raid1"
   - role: incus
     vars:
-      startup_mode: "on-boot"
+      incus_daemon_startup_mode: "on-boot"

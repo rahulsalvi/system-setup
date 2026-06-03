@@ -38,7 +38,7 @@
     enabled: true
     state: started
   become: true
-  when: startup_mode == "on-use"
+  when: incus_daemon_startup_mode == "on-use"
 
 - name: Enable incus service
   ansible.builtin.systemd_service:
@@ -46,4 +46,4 @@
     enabled: true
     state: started
   become: true
-  when: startup_mode == "on-boot"
+  when: incus_daemon_startup_mode == "on-boot"
