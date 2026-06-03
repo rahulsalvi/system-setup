@@ -1,5 +1,0 @@
----
-# Valid values: "single" (default), "raid1"
-# "single": for systems with a single root disk
-# "raid1": for systems with a raid1 mirror for root disk
-uki_root_disk_mode: "single"
