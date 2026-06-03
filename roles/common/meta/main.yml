@@ -2,7 +2,7 @@
 dependencies:
   - role: pacman
     when: ansible_facts['distribution'] == "Archlinux"
-  - role: systemd-resolved
+  - role: systemd_resolved
   - role: ufw
   - role: ssh
     vars:

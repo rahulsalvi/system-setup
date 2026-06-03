@@ -1,7 +1,7 @@
 ---
 dependencies:
-  - role: systemd-resolved
-  - role: systemd-networkd
+  - role: systemd_resolved
+  - role: systemd_networkd
     vars:
       profile: "simple"
   - role: ufw

@@ -3,6 +3,6 @@ dependencies:
   - role: common
     vars:
       ssh_cert_renewal_mode: "step"
-  - role: systemd-networkd
+  - role: systemd_networkd
     vars:
       profile: "simple"
