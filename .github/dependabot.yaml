@@ -7,3 +7,9 @@ updates:
       interval: "daily"
     assignees:
       - rahulsalvi
+  - package-ecosystem: "pre-commit"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - rahulsalvi
