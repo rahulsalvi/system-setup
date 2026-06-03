@@ -6,7 +6,7 @@
       - desktops
       - laptops
       - hypervisors
-      - virtual-machine
+      - virtual_machines
       - cloud-instances
       - unifi
   tasks:

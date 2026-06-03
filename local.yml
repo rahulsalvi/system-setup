@@ -12,9 +12,9 @@
   roles:
     - hypervisor
 - name: Configure virtual machines
-  hosts: virtual-machine
+  hosts: virtual_machines
   roles:
-    - virtual-machine
+    - virtual_machine
 - name: Configure cloud instances
   hosts: cloud-instances
   roles:
