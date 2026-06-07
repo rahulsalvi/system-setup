@@ -1,37 +1,36 @@
 ---
 - name: Bootstrap host for system setup
   hosts: localhost
-  vars:
-    known_roles:
-      - desktops
-      - laptops
-      - hypervisors
-      - virtual_machines
-      - cloud_instances
-      - unifi
   tasks:
+    - name: Load roles definition
+      ansible.builtin.include_vars:
+        file: roles.yml
+
     - name: Validate machine_role is defined
       ansible.builtin.assert:
         that:
           - machine_role is defined
           - machine_role | length > 0
-        fail_msg: "machine_role is required. Example: -e machine_role=desktops"
+        fail_msg: "machine_role is required. Example: -e machine_role=desktop"
 
     - name: Validate machine_role is known
       ansible.builtin.assert:
         that:
-          - machine_role in known_roles
-        fail_msg: "Invalid machine_role '{{ machine_role }}'. Must be one of: {{ known_roles | join(', ') }}"
+          - machine_role in machine_roles | map(attribute='name') | list
+        fail_msg: >
+          "Invalid machine_role '{{ machine_role }}'.
+          Must be one of: {{ machine_roles | map(attribute='name') | join(',') }}"
 
     - name: Install ansible and configure /etc/ansible
       ansible.builtin.include_role:
         name: ansible
 
-    - name: Deploy /etc/ansible/hosts
-      ansible.builtin.template:
-        src: templates/hosts.j2
-        dest: /etc/ansible/hosts
-        owner: root
-        group: root
+    - name: Add role to /etc/ansible/hosts
+      community.general.ini_file:
+        path: /etc/ansible/hosts
+        section: "{{ machine_role }}"
+        option: "localhost{% if host_vars is defined and host_vars %} {{ host_vars | replace(',', ' ') }}{% endif %}"
+        allow_no_value: true
+        create: true
         mode: u=rw,g=r,o=r
       become: true

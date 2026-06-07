@@ -1,25 +1,10 @@
 ---
-- name: Configure desktops
-  hosts: desktops
-  roles:
-    - desktop
-- name: Configure laptops
-  hosts: laptops
-  roles:
-    - laptop
-- name: Configure hypervisors
-  hosts: hypervisors
-  roles:
-    - hypervisor
-- name: Configure virtual machines
-  hosts: virtual_machines
-  roles:
-    - virtual_machine
-- name: Configure cloud instances
-  hosts: cloud_instances
-  roles:
-    - cloud_instance
-- name: Configure unifi
-  hosts: unifi
-  roles:
-    - unifi
+- name: Configure host
+  hosts: localhost
+  tasks:
+    - name: Apply role for each group
+      ansible.builtin.include_role:
+        name: "{{ role }}"
+      loop: "{{ group_names }}"
+      loop_control:
+        loop_var: role
