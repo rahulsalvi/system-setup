@@ -8,7 +8,7 @@ For setting up new machines based on their role
 
 ```bash
 ansible-pull -K -U https://github.com/rahulsalvi/system-setup.git \
-  -e machine_role=desktops \
+  -e machine_role="desktop" \
   bootstrap.yml
 ```
 
@@ -18,8 +18,8 @@ To override role defaults, pass `host_vars` as comma-separated key=value pairs:
 
 ```bash
 ansible-pull -K -U https://github.com/rahulsalvi/system-setup.git \
-  -e machine_role=laptops \
-  -e 'host_vars=secure_boot_install_microsoft_keys=false' \
+  -e machine_role="laptop" \
+  -e host_vars="secure_boot_install_microsoft_keys=false" \
   bootstrap.yml
 ```
 
