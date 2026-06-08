@@ -90,6 +90,7 @@ def main() -> None:
     )
     bootstrap_parser.add_argument(
         "host_vars",
+        nargs="?",
         default=None,
         help="Comma-separated key=value pairs to override role defaults",
     )
