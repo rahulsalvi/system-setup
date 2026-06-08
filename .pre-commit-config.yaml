@@ -32,5 +32,3 @@ repos:
       - id: ruff-check
         args: [--fix]
       - id: ruff-format
-
-exclude: "\\.(tmTheme|theme)$"
