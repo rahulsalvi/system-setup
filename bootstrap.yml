@@ -25,12 +25,11 @@
       ansible.builtin.include_role:
         name: ansible
 
-    - name: Add role to /etc/ansible/hosts
-      community.general.ini_file:
-        path: /etc/ansible/hosts
-        section: "{{ machine_role }}"
-        option: "localhost{% if host_vars is defined and host_vars %} {{ host_vars | replace(',', ' ') }}{% endif %}"
-        allow_no_value: true
-        create: true
+    - name: Deploy hosts file to /etc/ansible/hosts.d
+      ansible.builtin.template:
+        src: templates/hosts.j2
+        dest: "/etc/ansible/hosts.d/{{ machine_role }}"
+        owner: root
+        group: root
         mode: u=rw,g=r,o=r
       become: true

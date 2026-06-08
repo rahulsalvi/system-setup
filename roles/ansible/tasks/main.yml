@@ -31,6 +31,15 @@
     mode: u=rwx,g=rx,o=rx
   become: true
 
+- name: Ensure /etc/ansible/hosts.d directory exists
+  ansible.builtin.file:
+    path: /etc/ansible/hosts.d
+    state: directory
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  become: true
+
 - name: Set default ansible.cfg file
   ansible.builtin.copy:
     src: ansible.cfg
