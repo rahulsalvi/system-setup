@@ -1,11 +1,12 @@
 ---
+# This file exists on the ESP which is generally a FAT filesystem that doesn't
+# support linux permissions or ownership. For that reason, not setting the user,
+# group, or mode should be fine.
+# noqa: risky-file-permissions
 - name: Set systemd-boot loader.conf
   ansible.builtin.copy:
     src: loader.conf
     dest: /boot/loader/loader.conf
-    owner: root
-    group: root
-    mode: u=rwx,g=rx,o=rx
   become: true
 
 - name: Enable systemd-boot-update
