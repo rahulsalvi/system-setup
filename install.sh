@@ -34,14 +34,14 @@ esac
 
 # Install system-setup script
 echo "Installing system-setup utility..."
-RAW_URL="https://raw.githubusercontent.com/rahulsalvi/system-setup/main/roles/ansible/files/system-setup"
+SYSTEM_SETUP_URL="https://github.com/rahulsalvi/system-setup/releases/latest/download/system-setup"
 
 if [ -f /usr/local/bin/system-setup ]; then
     echo "/usr/local/bin/system-setup already exists. Exiting"
     exit 0
 fi
 
-curl -fsSL "$RAW_URL" -o /usr/local/bin/system-setup || {
+curl -fsSL "$SYSTEM_SETUP_URL" -o /usr/local/bin/system-setup || {
     echo "Download failed."
     exit 1
 }

@@ -2,6 +2,12 @@
 
 For setting up new machines based on their role
 
+## Quick Install
+
+```bash
+curl -fsSL https://github.com/rahulsalvi/system-setup/releases/latest/download/install.sh | sudo bash
+```
+
 ## Usage
 
 1. Bootstrap the machine with the appropriate role:
