@@ -1,0 +1,39 @@
+---
+- name: Install niri packages
+  community.general.pacman:
+    name:
+      - dms-shell-niri
+      - xwayland-satellite
+      - xdg-desktop-portal-gnome
+      - xdg-desktop-portal-gtk
+      - nautilus
+      - matugen
+      - wl-clipboard
+      - qt6-multimedia-ffmpeg
+      - i2c-tools
+      - qt6ct
+      - gnome-keyring
+      - libsecret
+      - seahorse
+      - polkit-kde-agent
+    state: present
+  become: true
+  when: ansible_facts['distribution'] == "Archlinux"
+
+- name: Ensure niri service dependency directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts.user_dir }}/.config/systemd/user/niri.service.wants"
+    state: directory
+    mode: u=rwx,g=rx,o=rx
+
+- name: Make DMS a dependency of niri
+  ansible.builtin.file:
+    src: /usr/lib/systemd/user/dms.service
+    dest: "{{ ansible_facts.user_dir }}/.config/systemd/user/niri.service.wants/dms.service"
+    state: link
+
+- name: Make plasma polkit agent a dependency of niri
+  ansible.builtin.file:
+    src: /usr/lib/systemd/user/plasma-polkit-agent.service
+    dest: "{{ ansible_facts.user_dir }}/.config/systemd/user/niri.service.wants/plasma-polkit-agent.service"
+    state: link
