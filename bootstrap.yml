@@ -32,12 +32,6 @@
     - name: Install system_setup
       ansible.builtin.include_role:
         name: system_setup
-
-    - name: Deploy hosts file to /etc/ansible/hosts.d
-      ansible.builtin.template:
-        src: templates/hosts.j2
-        dest: "/etc/ansible/hosts.d/{{ machine_role }}"
-        owner: root
-        group: root
-        mode: u=rw,g=r,o=r
-      become: true
+      vars:
+        system_setup_machine_role: "{{ machine_role }}"
+        system_setup_host_vars: "{{ host_vars }}"

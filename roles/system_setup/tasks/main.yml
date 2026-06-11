@@ -57,3 +57,13 @@
     group: root
     mode: u=rwx,g=rx,o=rx
   become: true
+
+- name: Deploy hosts file to /etc/ansible/hosts.d
+  ansible.builtin.template:
+    src: templates/hosts.j2
+    dest: "/etc/ansible/hosts.d/{{ system_setup_machine_role }}"
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  become: true
+  when: system_setup_machine_role is defined

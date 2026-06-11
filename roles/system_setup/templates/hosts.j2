@@ -1,0 +1,2 @@
+[{{ system_setup_machine_role }}]
+localhost{% if system_setup_host_vars is defined %} {{ system_setup_host_vars | replace(',', ' ') }}{% endif %}
