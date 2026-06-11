@@ -1,3 +1,4 @@
+# vim: ft=yaml.ansible
 ---
 - name: Configure host
   hosts: localhost
