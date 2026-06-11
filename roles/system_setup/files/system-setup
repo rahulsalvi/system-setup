@@ -24,8 +24,8 @@ def build_pull_args(args: argparse.Namespace) -> list[str]:
 def build_bootstrap_args(args: argparse.Namespace) -> list[str]:
     """Build bootstrap-specific arguments."""
     bootstrap_args = ["-e", f"machine_role={args.machine_role}"]
-    if args.host_vars:
-        bootstrap_args.extend(["-e", f"host_vars='{args.host_vars}'"])
+    if args.role_vars:
+        bootstrap_args.extend(["-e", f"role_vars='{args.role_vars}'"])
     bootstrap_args.append("bootstrap.yml")
     return bootstrap_args
 
@@ -89,7 +89,7 @@ def main() -> None:
         help="Machine role",
     )
     bootstrap_parser.add_argument(
-        "host_vars",
+        "role_vars",
         nargs="?",
         default=None,
         help="Comma-separated key=value pairs to override role defaults",

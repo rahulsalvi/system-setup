@@ -34,4 +34,4 @@
         name: system_setup
       vars:
         system_setup_machine_role: "{{ machine_role }}"
-        system_setup_host_vars: "{{ host_vars }}"
+        system_setup_role_vars: "{{ role_vars }}"

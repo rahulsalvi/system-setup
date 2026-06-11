@@ -20,12 +20,12 @@ ansible-pull -K -U https://github.com/rahulsalvi/system-setup.git \
 
 See `bootstrap.yml` for valid roles.
 
-To override role defaults, pass `host_vars` as comma-separated key=value pairs:
+To override role defaults, pass `role_vars` as comma-separated key=value pairs:
 
 ```bash
 ansible-pull -K -U https://github.com/rahulsalvi/system-setup.git \
   -e machine_role="laptop" \
-  -e host_vars="secure_boot_install_microsoft_keys=false" \
+  -e role_vars="secure_boot_install_microsoft_keys=false" \
   bootstrap.yml
 ```
 
