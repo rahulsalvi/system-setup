@@ -1,5 +1,5 @@
 ---
-- name: Install ansible packages
+- name: Install system-setup packages
   community.general.pacman:
     name:
       - ansible
@@ -10,7 +10,7 @@
   become: true
   when: ansible_facts['distribution'] == "Archlinux"
 
-- name: Install ansible packages
+- name: Install system-setup packages
   ansible.builtin.apt:
     name:
       - ansible

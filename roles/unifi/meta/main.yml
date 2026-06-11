@@ -6,5 +6,5 @@ dependencies:
       systemd_networkd_profile: "simple"
   - role: ufw
   - role: ssh
-  - role: ansible
+  - role: system_setup
   - role: tls

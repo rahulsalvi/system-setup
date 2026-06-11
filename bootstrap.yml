@@ -29,9 +29,9 @@
           "Invalid machine_role '{{ machine_role }}'.
           Must be one of: {{ available_roles | join(', ') }}"
 
-    - name: Install ansible and configure /etc/ansible
+    - name: Install system_setup
       ansible.builtin.include_role:
-        name: ansible
+        name: system_setup
 
     - name: Deploy hosts file to /etc/ansible/hosts.d
       ansible.builtin.template:

@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - scripts/install.sh
-      - roles/ansible/files/system-setup
+      - roles/system_setup/files/system-setup
 
 jobs:
   release:
@@ -34,4 +34,4 @@ jobs:
           name: "Version ${{ steps.calver.outputs.next_version }}"
           files: |
             scripts/install.sh
-            roles/ansible/files/system-setup
+            roles/system_setup/files/system-setup

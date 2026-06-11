@@ -6,7 +6,7 @@ dependencies:
   - role: ufw
   - role: ssh
   - role: tailscale
-  - role: ansible
+  - role: system_setup
   - role: terminal
     when: ansible_facts['distribution'] == "Archlinux"
   - role: tls
