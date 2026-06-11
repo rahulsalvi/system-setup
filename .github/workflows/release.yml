@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - install.sh
+      - scripts/install.sh
       - roles/ansible/files/system-setup
 
 jobs:
@@ -33,5 +33,5 @@ jobs:
           tag_name: ${{ steps.calver.outputs.next_version }}
           name: "Version ${{ steps.calver.outputs.next_version }}"
           files: |
-            install.sh
+            scripts/install.sh
             roles/ansible/files/system-setup
