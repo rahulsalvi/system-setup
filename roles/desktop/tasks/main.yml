@@ -12,6 +12,8 @@
       - ttf-0xproto-nerd
       - noto-fonts-cjk
       - usbutils
+      - vlc
+      - vlc-plugin-ffmpeg
       - wl-clipboard
     state: present
   become: true
