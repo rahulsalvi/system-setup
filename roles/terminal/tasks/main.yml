@@ -31,6 +31,7 @@
       - lolcat
       - man-db
       - man-pages
+      - nmap
       - opencode
       - pre-commit
       - prettier
@@ -40,6 +41,7 @@
       - ripgrep-all
       - rsync
       - rustup
+      - shellcheck
       - starship
       - tldr
       - unzip
