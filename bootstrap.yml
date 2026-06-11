@@ -1,11 +1,8 @@
+# vim: ft=yaml.ansible
 ---
 - name: Bootstrap host for system setup
   hosts: localhost
   tasks:
-    - name: Load roles definition
-      ansible.builtin.include_vars:
-        file: roles.yml
-
     - name: Validate machine_role is defined
       ansible.builtin.assert:
         that:
@@ -13,13 +10,24 @@
           - machine_role | length > 0
         fail_msg: "machine_role is required. Example: -e machine_role=desktop"
 
+    - name: Find all role directories
+      ansible.builtin.find:
+        paths: "{{ playbook_dir }}/roles"
+        file_type: directory
+        depth: 1
+      register: roles_found
+
+    - name: Build role names list
+      ansible.builtin.set_fact:
+        available_roles: "{{ roles_found.files | map(attribute='path') | map('basename') | list }}"
+
     - name: Validate machine_role is known
       ansible.builtin.assert:
         that:
-          - machine_role in machine_roles | map(attribute='name') | list
+          - machine_role in available_roles
         fail_msg: >
           "Invalid machine_role '{{ machine_role }}'.
-          Must be one of: {{ machine_roles | map(attribute='name') | join(',') }}"
+          Must be one of: {{ available_roles | join(', ') }}"
 
     - name: Install ansible and configure /etc/ansible
       ansible.builtin.include_role:
