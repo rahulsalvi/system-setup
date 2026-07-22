@@ -10,7 +10,9 @@
       - nvtop
       - rpi-imager
       - ttf-0xproto-nerd
+      - ttf-nerd-fonts-symbols
       - noto-fonts-cjk
+      - noto-fonts-emoji
       - usbutils
       - vlc
       - vlc-plugin-ffmpeg
