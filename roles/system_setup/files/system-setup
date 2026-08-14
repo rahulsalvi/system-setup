@@ -2,6 +2,7 @@
 """system-setup - Run ansible-pull for bootstrapping or updating a machine."""
 
 import argparse
+import os
 import subprocess
 import sys
 
@@ -37,7 +38,10 @@ def do_ansible_pull(args: list[str]):
     if input("Proceed? [Y/n] ").strip().lower() == "n":
         print("Aborted.")
         sys.exit(1)
-    subprocess.run(command, check=True)
+    # fix lack of scrolling output by setting PYTHONUNBUFFERED to 1
+    env = os.environ.copy()
+    env["PYTHONUNBUFFERED"] = "1"
+    subprocess.run(command, check=True, env=env)
 
 
 def do_bootstrap(args: argparse.Namespace) -> None:
