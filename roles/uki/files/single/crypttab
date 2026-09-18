@@ -1,0 +1,1 @@
+root /dev/gpt-auto-root-luks none tpm2-device=auto,tpm2-measure-pcr=yes,x-initrd.attach
