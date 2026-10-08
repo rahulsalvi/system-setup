@@ -2,7 +2,8 @@
 - name: Install niri packages
   community.general.pacman:
     name:
-      - dms-shell-niri
+      - niri
+      - dms-shell
       - xwayland-satellite
       - xdg-desktop-portal-gnome
       - xdg-desktop-portal-gtk
