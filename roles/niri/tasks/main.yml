@@ -3,7 +3,7 @@
   community.general.pacman:
     name:
       - niri
-      - dms-shell
+      - dux-shell
       - xwayland-satellite
       - xdg-desktop-portal-gnome
       - xdg-desktop-portal-gtk
